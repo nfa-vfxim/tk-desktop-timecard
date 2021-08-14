@@ -27,7 +27,7 @@ class Timecard(sgtk.platform.Application):
             tk_desktop_timecard = self.import_module("tk_desktop_timecard")
             # register command
             cb = lambda: tk_desktop_timecard.show_dialog(self)
-            menu_caption = "Timecard"
+            menu_caption = "Timelog"
             self.engine.register_command(menu_caption, cb)
         except Exception:
             traceback.print_exc()

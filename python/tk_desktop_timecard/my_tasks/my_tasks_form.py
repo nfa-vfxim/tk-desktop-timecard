@@ -220,9 +220,9 @@ class MyTasksForm(QtGui.QWidget):
         all_filter.setData([])
         filters_group.addAction(all_filter)
         filters_menu.addAction(all_filter)
-        facility_filter = QtGui.QAction('Facility Tasks', filters_menu,
+        facility_filter = QtGui.QAction('Filmacademy Tasks', filters_menu,
                                         checkable=True)
-        facility_filter.setData([['project.Project.name', 'is', 'Facility']])
+        facility_filter.setData([['project.Project.name', 'is', 'filmacademy']])
         filters_group.addAction(facility_filter)
         filters_menu.addAction(facility_filter)
         if UI_filters_action:

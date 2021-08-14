@@ -20,11 +20,18 @@ configuration:
         type: shotgun_filter
       allows_empty: True
       default_value:
-        - [sg_status_list, not_in, [fin,omt]]
+        - [sg_status_list, not_in, [fin,omt,del]]
         - filter_operator: any
           filters:
             - [task_assignees, is, '{context.user}']
-            - [task_assignees, in, '{context.user.group}']
+            - [content, is, 'general']
+            - [content, is, 'meeting']
+
+    general_project_id:
+      type: int
+      description: Project used for general tasks.
+      allows_empty: False
+      default_value: 1546
 
     my_tasks_extra_display_fields:
       type: list
@@ -42,8 +49,8 @@ supported_engines:
 requires_shotgun_fields:
 
 # More verbose description of this item
-display_name: "OFG Timecard"
-description: "Timecard App for Ohio Film Group"
+display_name: "Timelog"
+description: "Timelog app by Ohio Film Group"
 
 # Required minimum versions for this item to run
 requires_shotgun_version:

@@ -43,6 +43,9 @@ class AppDialog(QtGui.QWidget):
         """
         # get app bundle
         self._app = sgtk.platform.current_bundle()
+
+        # Getting app settings
+        self.generalProjectID = self._app.get_setting("general_project_id")
         # call the base class and let it do its thing.
         QtGui.QWidget.__init__(self)
 
@@ -196,8 +199,17 @@ class AppDialog(QtGui.QWidget):
         extra_display_fields = self._app.get_setting("my_tasks_extra_display_fields")
         # get the my task filters from the config.
         UI_filters = []
+        projectID = self.generalProjectID
         if UI_filters_action is None:
-            UI_filters = [['project', 'is', '{context.project}']]
+            UI_filters = [
+                {
+                    "filter_operator": "any",
+                    "filters": [
+                        ['project', 'is', '{context.project}'],
+                        ['project', 'is', {'type': 'Project', 'id': projectID}]
+                    ]
+                }
+            ]
         else:
             UI_filters = UI_filters_action.data()
         my_tasks_filters = self._app.get_setting("my_tasks_filters")
